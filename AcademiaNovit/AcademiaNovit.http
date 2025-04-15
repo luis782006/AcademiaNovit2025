@@ -1,0 +1,6 @@
+@AcademiaNovit_HostAddress = http://localhost:5286
+
+GET {{AcademiaNovit_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
