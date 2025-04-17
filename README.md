@@ -73,4 +73,4 @@ Estructura del Proyecto
 
 1. Docker Desktop - [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
 2. Virtual Box 7.1.4 - [https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4-165100-Win.exe](https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4-165100-Win.exe)
-3. Maquina Virtual - Ubuntu Server 24.04 (link WeTransfer)
+3. Virtual Machine - Ubuntu Server 24.04 (link WeTransfer)
