@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AcademiaNovit;
+namespace AcademiaNovit.Models;
 
 [Table("Product")]
 public class Product
