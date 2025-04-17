@@ -65,6 +65,6 @@ Estructura del Proyecto
 - **Migrations/:** Contiene las migraciones de la base de datos generadas por Entity Framework.
 - **Util/:** Contiene utilidades como validadores.
 
-### Notas
+## Notas
 - Si necesitas cambiar la configuración de la base de datos, edita el archivo `appsettings.json` o `appsettings.Development.json`.
 - Asegúrate de que el archivo `Data.db` esté en el directorio raíz del proyecto `AcademiaNovit` para que la base de datos funcione correctamente.
