@@ -68,9 +68,3 @@ Estructura del Proyecto
 ## Notas
 - Si necesitas cambiar la configuración de la base de datos, edita el archivo `appsettings.json` o `appsettings.Development.json`.
 - Asegúrate de que el archivo `Data.db` esté en el directorio raíz del proyecto `AcademiaNovit` para que la base de datos funcione correctamente.
-
-## DevSecOps
-
-1. Docker Desktop - [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-2. Virtual Box 7.1.4 - [https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4-165100-Win.exe](https://download.virtualbox.org/virtualbox/7.1.4/VirtualBox-7.1.4-165100-Win.exe)
-3. Virtual Machine - Ubuntu Server 24.04 (link WeTransfer)
