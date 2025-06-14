@@ -5,8 +5,12 @@
 Antes de ejecutar el proyecto, asegúrate de cumplir con los siguientes requisitos:
 
 1. **.NET SDK**: Instala la versión 8.0 o superior del SDK de .NET. Puedes descargarlo desde [dotnet.microsoft.com](https://dotnet.microsoft.com/).
-2. **SQLite**: El proyecto utiliza SQLite como base de datos. No se requiere configuración adicional, ya que el archivo `Data.db` se genera automáticamente.
-3. **Visual Studio (opcional)**: Si prefieres usar un entorno gráfico, instala Visual Studio 2022 o superior con la carga de trabajo de desarrollo web y de escritorio .NET.
+2. **Visual Studio (opcional)**: Si prefieres usar un entorno gráfico, instala Visual Studio 2022 o superior con la carga de trabajo de desarrollo web y de escritorio .NET.
+3. Instalar Entity Framework Core Tools [ver documentación](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
+
+```sh
+dotnet tool install --global dotnet-ef
+```
 
 ## Configuración
 
@@ -26,7 +30,15 @@ dotnet restore
 ```bash
 dotnet ef database update --project AcademiaNovit
 ```
+## Base de datos (Postgres con Docker)
 
+Para levantar una instancia de Postgres como container de docker se debe:
+- Instalar Docker Desktop (en Windows)
+- Desde la terminal/CMD/powershell ejecutar el siguiente comando:
+
+```sh
+docker run -n academia -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=tivon1234 -d postgres:17.5
+```
 
 ## Ejecución del Proyecto
 
