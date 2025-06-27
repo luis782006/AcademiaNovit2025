@@ -32,7 +32,7 @@ Para levantar una instancia de Postgres como container de docker se debe:
 - Desde la terminal/CMD/powershell ejecutar el siguiente comando:
 
 ```sh
-docker run -n academia -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=tivon1234 -d postgres:17.5
+docker run --name academia -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=tivon1234 -d postgres:17.5
 ```
 
 ## Ejecución del Proyecto
