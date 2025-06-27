@@ -1,8 +1,26 @@
 using AcademiaNovit;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#region configuracion del Serilog
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+builder.Host.UseSerilog((context, loggerConfiguration) => loggerConfiguration
+    .ReadFrom.Configuration(context.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console());
+
+# endregion
+
+#region leer variables de entorno
+
+builder.Configuration.AddEnvironmentVariables();
+
+#endregion
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -25,6 +43,12 @@ app.MapOpenApi();
 app.MapScalarApiReference();
 
 app.MapControllers();
+
+app.MapGet("/keep-alive", () => new
+{
+    status = "alive",
+    timestamp = DateTime.UtcNow    
+});
 
 app.Run();
 
