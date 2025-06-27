@@ -44,11 +44,15 @@ app.MapScalarApiReference();
 
 app.MapControllers();
 
+#region keep alive endpoint
+
 app.MapGet("/keep-alive", () => new
 {
     status = "alive",
-    timestamp = DateTime.UtcNow    
+    timestamp = DateTime.UtcNow
 });
+
+#endregion
 
 app.Run();
 
