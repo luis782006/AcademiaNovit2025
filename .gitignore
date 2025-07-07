@@ -399,7 +399,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /AcademiaNovit/Controllers/ProductController.cs
-/AcademiaNovit/AcademiaNovit.csproj
+
 /AcademiaNovit/appsettings.Development.json
 /AcademiaNovit/appsettings.json
 /AcademiaNovit/Program.cs
