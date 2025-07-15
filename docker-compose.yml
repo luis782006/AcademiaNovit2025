@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  webapi:
+    # IMPORTANTE: Reemplaza 'YOUR_GITHUB_USERNAME' con tu nombre de usuario de GitHub.
+    image: ghcr.io/YOUR_GITHUB_USERNAME/academianovit2025/academianovit:main
+    container_name: academianovit-api
+    ports:
+      # Mapea el puerto 5286 del host al puerto 8080 del contenedor (HTTP)
+      - "5286:8080"
+      # Mapea el puerto 7280 del host al puerto 8081 del contenedor (HTTPS)
+      - "7280:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      # Aquí se pueden agregar otras variables de entorno, como la cadena de conexión a la base de datos.
+      # - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=mydatabase;Username=user;Password=password
+    restart: unless-stopped
