@@ -13,5 +13,5 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       # Aquí se pueden agregar otras variables de entorno, como la cadena de conexión a la base de datos.
-      # - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=mydatabase;Username=user;Password=password
+      - ConnectionStrings__DefaultConnection=${{ secrets.DB_CONNECTION_STRING }}
     restart: unless-stopped

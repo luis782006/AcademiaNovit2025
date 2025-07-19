@@ -11,6 +11,7 @@ services:
       - "7280:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=${{ secrets.DB_CONNECTION_STRING }}
     deploy:
       replicas: 5
       update_config:
