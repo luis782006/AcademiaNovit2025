@@ -46,6 +46,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare docker-compose.yml with secrets
+        run: |
+          sed -i 's|${{ secrets.DB_CONNECTION_STRING }}|${{ secrets.DB_CONNECTION_STRING }}|' docker-compose.yml
+
       - name: Copy docker-compose.yml to server
         uses: appleboy/scp-action@master
         with:
