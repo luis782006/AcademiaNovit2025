@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   webapi:
     # IMPORTANTE: Reemplaza 'YOUR_GITHUB_USERNAME' con tu nombre de usuario de GitHub.
-    image: ghcr.io/YOUR_GITHUB_USERNAME/academianovit2025/academianovit:main
+    image: ${DOCKER_IMAGE}
     container_name: academianovit-api
     ports:
       # Mapea el puerto 5286 del host al puerto 8080 del contenedor (HTTP)

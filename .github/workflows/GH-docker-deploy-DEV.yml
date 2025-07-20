@@ -1,4 +1,4 @@
-name: AcademiaNovit-DEPLOY-DEV
+'''name: AcademiaNovit-DEPLOY-DEV
 
 on:
   push:
@@ -11,6 +11,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      image_name: ${{ steps.meta.outputs.tags }}
 
     steps:
       - name: Checkout repository
@@ -23,11 +25,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase repository name
+        id: repo
+        run: echo "name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
       - name: Extract metadata (tags and labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}/academianovit
+          images: ghcr.io/${{ steps.repo.outputs.name }}/academianovit
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -67,5 +73,7 @@ jobs:
             cd /home/${{ secrets.PROD_USERNAME }}/app
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             export DB_CONNECTION_STRING="${{ secrets.DB_CONNECTION_STRING }}"
+            export DOCKER_IMAGE="${{ needs.build-and-push-image.outputs.image_name }}"
             docker compose pull
             docker compose up -d
+''
