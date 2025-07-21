@@ -1,0 +1,41 @@
+#Nombre del workflow
+name: GH-build-DEV
+
+# eventos disparadores 
+on:
+  push:
+    branches: [ "main" ] # el evento/s que hace disparar el workflow
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04 # Dejar explicito el sistema operativo, su version
+    steps:
+    - uses: actions/checkout@v4 # Clonar el repositorio en el runner
+    #Nombre del paso: Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+         8.0.x
+         9.0.x
+    - name: Restore dependencies
+      run: dotnet restore AcademiaNovit.sln
+    - name: Build
+      run: dotnet build AcademiaNovit.sln --no-restore
+    - name: Test
+      run: dotnet test AcademiaNovit.sln --no-build --verbosity normal
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v6
+      with:
+        server_address: ${{secrets.SECRET_HOST}}     # ej: smtp.debugmail.io
+        server_port: ${{secrets.SECRET_PORT}}        # ej: 25 o 587
+        secure: false                                # DebugMail no necesita TLS
+        username: ${{secrets.SECRET_LOGIN}}          # tu usuario de DebugMail
+        password: ${{secrets.SECRET_PASS}}           # tu contraseña de DebugMail
+        subject: Prueba de Workflow
+        to: obiwan@example.com,yoda@example.com
+        from: Luke Skywalker <facuq240@debugmail.io> # puede ser cualquier cosa
+        body: Build job of ${{github.repository}} completed successfully!
+        ignore_cert: true
+        convert_markdown: true
+        priority: normal

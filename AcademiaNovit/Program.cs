@@ -1,5 +1,6 @@
 using AcademiaNovit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Scalar.AspNetCore;
 using Serilog;  
 
@@ -32,8 +33,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connect
 
 #endregion
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
@@ -45,8 +45,7 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.MapOpenApi();
 app.MapScalarApiReference();
 
 app.MapControllers();
