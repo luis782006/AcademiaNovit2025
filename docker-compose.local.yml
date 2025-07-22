@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:17.5
+    container_name: postgres_local
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: tivon1234
+      POSTGRES_DB: datos
+    ports:
+      - "5432:5432"
+
+  api:
+    image: academianovit:latest
+    container_name: api_local
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      DB_CONNECTION_STRING_FILE: /run/secrets/db_connection_string
+    secrets:
+      - db_connection_string
+
+secrets:
+  db_connection_string:
+    file: ./secrets/db_connection_string.txt
