@@ -1,0 +1,24 @@
+name: GH_docker_registry_DEV
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build Docker image
+      # Compila la imagen Docker para el registry
+      run: docker build -f Dockerfile -t ghcr.io/${{ secrets.REGISTRY_USERNAME }}/academianovit:latest .
+
+    - name: Login to GitHub Container Registry
+      # Autenticarse en el registry con el token
+      run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
+
+    - name: Push Docker image
+      # Subir la imagen al registry
+      run: docker push ghcr.io/${{ secrets.REGISTRY_USERNAME }}/academianovit:latest

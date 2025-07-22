@@ -1,0 +1,23 @@
+name: GH_docker_deploy_DEV
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Deploy to VPS via SSH
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SERVER_URL }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_KEY }}
+        port: ${{ secrets.SERVER_PORT }}
+        script: |
+          docker pull ghcr.io/${{ secrets.REGISTRY_USERNAME }}/academianovit:latest
+          docker stack deploy -c /home/lsanchez/docker-swarm.yml academianovit
