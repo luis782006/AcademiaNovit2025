@@ -1,1 +1,0 @@
-Host=postgres;Port=5432;Database=datos;Username=admin;Password=tivon1234
